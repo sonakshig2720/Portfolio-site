@@ -30,7 +30,8 @@ export default function Experience() {
   const [hot, setHot] = useState<number | null>(null);
   const [open, setOpen] = useState<ExperienceNode | null>(null);
 
-  // Route an orthogonal busway between consecutive cards, re-measured on resize.
+  // Route an orthogonal busway between consecutive cards only (no lead-in or tail),
+  // re-measured on resize.
   useLayoutEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -41,15 +42,12 @@ export default function Experience() {
         return { cx: Math.round(r.left - base.left + r.width / 2), top: r.top - base.top, bottom: r.bottom - base.top };
       });
       const segs: Segment[] = [];
-      segs.push({ d: `M${boxes[0].cx} 0 V${boxes[0].top}`, from: -1 });
       for (let i = 0; i < boxes.length - 1; i++) {
         const a = boxes[i];
         const b = boxes[i + 1];
         const mid = Math.round((a.bottom + b.top) / 2);
         segs.push({ d: `M${a.cx} ${a.bottom} V${mid} H${b.cx} V${b.top}`, from: i });
       }
-      const last = boxes[boxes.length - 1];
-      segs.push({ d: `M${last.cx} ${last.bottom} V${base.height}`, from: boxes.length - 1 });
       setBus({ w: base.width, h: base.height, segs });
     };
     measure();
