@@ -1,0 +1,9 @@
+node_modules
+.next
+.DS_Store
+next-env.d.ts
+
+# source files the site does not use (copies live in public/)
+Documents/
+*.tsbuildinfo
+.claude/
