@@ -11,7 +11,6 @@ export type DeckItem = {
   headline: string; // large line over the visual
   chips: string[]; // small chips at the top of the visual
   kicker: string; // mono line above the headline
-  summary: string;
   previewImage?: string;
   imageFit?: "contain" | "cover";
   ctaLabel?: string; // no label, no button
@@ -106,6 +105,16 @@ export default function StackDeck<T extends DeckItem>({
                       <path d="m6 9 6 6 6-6" />
                     </svg>
                   </button>
+                ) : p.ctaLabel ? (
+                  <button
+                    type="button"
+                    className="btn btn--primary btn--sm deck-bar__cta"
+                    onClick={() => onProjectSelect?.(p)}
+                    aria-label={`${p.ctaLabel}: ${p.title}`}
+                  >
+                    <span className="deck-bar__cta-text">{p.ctaLabel}</span>
+                    <Arrow className="icon" />
+                  </button>
                 ) : null}
                 {/* the whole strip is clickable once covered; the button above is the labelled target */}
                 {covered && <span className="deck-bar__hit" aria-hidden="true" onClick={() => scrollToProject(i)} />}
@@ -134,22 +143,6 @@ export default function StackDeck<T extends DeckItem>({
                   <p className="deck-card__headline">{p.headline}</p>
                 </div>
               </div>
-
-              <footer className="deck-card__foot">
-                <p className="deck-card__summary">{p.summary}</p>
-                {p.ctaLabel && (
-                  <button
-                    type="button"
-                    className="btn btn--primary btn--sm deck-card__cta"
-                    onClick={() => onProjectSelect?.(p)}
-                    aria-label={`${p.ctaLabel}: ${p.title}`}
-                    tabIndex={covered ? -1 : 0}
-                  >
-                    {p.ctaLabel}
-                    <Arrow className="icon" />
-                  </button>
-                )}
-              </footer>
             </article>
           </li>
         );

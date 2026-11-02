@@ -7,3 +7,7 @@ next-env.d.ts
 Documents/
 *.tsbuildinfo
 .claude/
+
+# secrets (ANTHROPIC_API_KEY for the chatbot)
+.env
+.env*.local

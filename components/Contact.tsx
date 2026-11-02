@@ -50,12 +50,13 @@ export default function Contact() {
       <div className="container">
         <div className="contact__inner reveal">
           <h2 className="contact__title">
-            Let&apos;s build something <span className="grad-text">great together.</span>
+            Let&apos;s turn complex models into <span className="grad-text">meaningful impact.</span>
           </h2>
           <p className="section-sub">
-            Interested in research, AI systems or collaboration? I&apos;m based in {profile.location} and{" "}
-            {profile.locationNote.toLowerCase()}.
+            Whether you&apos;re scaling intelligent systems, exploring novel architectures, or looking for a researcher
+            to join your team—my inbox is always open.
           </p>
+          <p className="contact__where">Currently in Hamburg, Germany • Ready to relocate worldwide</p>
           <a className="btn btn--primary" href={`mailto:${profile.email}`}>
             Get in touch
             <Arrow className="icon" />

@@ -5,9 +5,6 @@ import { radialProjects } from "@/lib/radialProjects";
 import type { ProjectItem } from "@/lib/types";
 import StackDeck, { type DeckItem } from "./StackDeck";
 
-// first sentence of the write-up doubles as the card's impact summary
-const firstSentence = (text: string) => text.match(/^.*?[.!?](\s|$)/)?.[0].trim() ?? text;
-
 // hackathon builds have their own section
 const items = radialProjects.filter((p) => p.category !== "Hackathon").map((p, i) => {
   const year = p.period?.match(/\d{4}/g)?.pop();
@@ -19,7 +16,6 @@ const items = radialProjects.filter((p) => p.category !== "Hackathon").map((p, i
     headline: p.subtitle,
     chips: [p.category, p.period ?? ""].filter(Boolean),
     kicker: p.techStack.slice(0, 3).join(" · "),
-    summary: firstSentence(p.description),
     previewImage: p.image,
     imageFit: p.imageFit,
     ctaLabel: p.caseStudyUrl ? "View project" : undefined,

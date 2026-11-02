@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Caveat, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import CursorTrail from "@/components/CursorTrail";
+import ChatBot from "@/components/ChatBot";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 // Section and card titles.
@@ -36,6 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <script dangerouslySetInnerHTML={{ __html: resetOnReload }} />
         {children}
+        <CursorTrail />
+        <ChatBot />
       </body>
     </html>
   );

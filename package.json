@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "chat:index": "tsx scripts/build-chat-index.ts"
   },
   "dependencies": {
     "next": "^15.5.28",
@@ -13,8 +14,10 @@
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@huggingface/transformers": "4.3.1",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }
