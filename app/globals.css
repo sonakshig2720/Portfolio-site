@@ -18,11 +18,6 @@
   --on-primary: #1a1405;
   --grad: linear-gradient(100deg, #f1d9a0 0%, #d4af5f 45%, #b8913f 100%);
 
-  --g-genai: #e8c987;
-  --g-knowledge: #d4af5f;
-  --g-ml: #d4af5f;
-  --g-data: #f1d9a0;
-  --g-apps: #e8c987;
 
   --font-display: var(--font-body);
   --font-mono: var(--font-body);
@@ -688,211 +683,6 @@ button {
   margin-top: 8px;
   display: grid;
   gap: 12px;
-}
-
-/* ───────────── Skills ───────────── */
-.skills__layout {
-  display: grid;
-  grid-template-columns: 0.62fr 1.38fr;
-  gap: 48px;
-  align-items: center;
-}
-.skill-tabs {
-  margin-top: 32px;
-  display: grid;
-  gap: 6px;
-}
-.skill-tab {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  border: 1px solid transparent;
-  text-align: left;
-  font-size: 15px;
-  color: var(--text-muted);
-  transition: background var(--dur), border-color var(--dur), color var(--dur);
-}
-.skill-tab:hover {
-  background: rgba(24, 41, 70, 0.5);
-  color: var(--text);
-}
-.skill-tab[aria-selected="true"] {
-  background: rgba(24, 41, 70, 0.85);
-  border-color: var(--border-strong);
-  color: var(--offwhite);
-}
-.skill-tab[aria-selected="true"] .swatch {
-  box-shadow: 0 0 10px var(--c);
-}
-.skill-tab__count {
-  margin-left: auto;
-  font-size: 12px;
-  color: var(--text-dim);
-}
-.swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 3px;
-  background: var(--c);
-  flex: none;
-}
-
-.circuit__board {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 640 / 440;
-  animation: fadeUp 420ms var(--ease-out);
-}
-.circuit__wires {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-.trace,
-.stub path {
-  fill: none;
-  stroke: #a7b0c2;
-  stroke-width: 2.5;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 700ms var(--ease-out) forwards;
-}
-.trace {
-  opacity: 0.6;
-  transition: stroke 150ms, opacity 150ms;
-}
-.trace--on {
-  stroke: var(--c);
-  opacity: 1;
-  filter: drop-shadow(0 0 4px var(--c));
-}
-.stub path {
-  opacity: 0.25;
-  animation-delay: 200ms;
-}
-.stub circle {
-  fill: #a7b0c2;
-  opacity: 0.3;
-}
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.cnode {
-  position: absolute;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  width: clamp(30px, 4.4vw, 44px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 2.5px solid #a7b0c2;
-  background: var(--bg);
-  display: grid;
-  place-items: center;
-  transition: border-color 150ms, box-shadow 150ms, transform var(--dur) var(--ease-out);
-}
-.cnode__dot {
-  width: 30%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: transparent;
-  transition: background 150ms;
-}
-.cnode__label {
-  position: absolute;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
-  color: var(--offwhite);
-  opacity: 0.8;
-  pointer-events: none;
-  transition: opacity 150ms;
-}
-.cnode--bottom .cnode__label {
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-}
-.cnode--top .cnode__label {
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-}
-.cnode--left .cnode__label {
-  right: calc(100% + 10px);
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: right;
-}
-.cnode--right .cnode__label {
-  left: calc(100% + 10px);
-  top: 50%;
-  transform: translateY(-50%);
-}
-.cnode:hover,
-.cnode.is-linked {
-  border-color: var(--c);
-}
-.cnode.is-active {
-  border-color: var(--c);
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 18%, transparent), 0 0 26px color-mix(in srgb, var(--c) 55%, transparent);
-}
-.cnode.is-active .cnode__dot {
-  background: var(--c);
-}
-.cnode.is-active .cnode__label,
-.cnode:hover .cnode__label {
-  opacity: 1;
-}
-
-.circuit-card {
-  position: absolute;
-  z-index: 3;
-  width: 39%;
-  max-width: 270px;
-  display: grid;
-  gap: 6px;
-  padding: 16px 18px 18px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(24, 41, 70, 0.94), rgba(18, 32, 58, 0.82));
-  border: 1px solid var(--border-strong);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.9), 0 0 40px -20px var(--c);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--text-muted);
-  pointer-events: none;
-  animation: fadeUp 220ms var(--ease-out);
-}
-.circuit-card .mono {
-  font-size: 12px;
-  color: var(--text-dim);
-}
-.circuit-card strong {
-  color: var(--c);
-  font-weight: 600;
-}
-.circuit-card__area {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text-dim);
-}
-.circuit-card__bar {
-  margin-top: 6px;
-  height: 5px;
-  border-radius: 5px;
-  background: linear-gradient(90deg, var(--c) 0 78%, var(--offwhite) 78% 100%);
 }
 
 /* ───────────── Projects ───────────── */
@@ -1648,7 +1438,6 @@ a.archive__row:hover {
 
 /* ───────────── Responsive ───────────── */
 @media (max-width: 1024px) {
-  .skills__layout,
   .about__grid {
     grid-template-columns: 1fr;
   }
@@ -1973,41 +1762,6 @@ a.archive__row:hover {
   }
 }
 
-@media (max-width: 640px) {
-  .skill-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .skill-tab {
-    min-height: 40px;
-    padding: 8px 12px;
-    font-size: 13.5px;
-  }
-  .skill-tab__count {
-    display: none;
-  }
-  .cnode__label {
-    font-size: 10px;
-    white-space: normal;
-    width: max-content;
-    max-width: 78px;
-    line-height: 1.25;
-  }
-  .cnode--top .cnode__label,
-  .cnode--bottom .cnode__label {
-    text-align: center;
-  }
-  .circuit {
-    padding-bottom: 190px;
-  }
-  .circuit-card {
-    top: calc(100% + 52px) !important;
-    left: 0 !important;
-    width: 100%;
-    max-width: none;
-  }
-}
 
 /* ───────────── Experience: career pipeline ───────────── */
 .pipeline {
@@ -2187,17 +1941,11 @@ a.archive__row:hover {
   text-transform: uppercase;
 }
 .pl-card__body {
-  display: grid;
-  grid-template-columns: 1fr 150px;
-  gap: 16px;
-  align-items: center;
   margin: 22px 0 18px;
 }
 .pl-card__verbs {
   display: grid;
   gap: 14px;
-  padding-right: 16px;
-  border-right: 1px solid var(--border);
   font-size: clamp(15px, 1.4vw, 18px);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -2460,13 +2208,6 @@ a.archive__row:hover {
 @media (max-width: 640px) {
   .pl-card {
     padding: 22px 20px 16px;
-  }
-  .pl-card__body {
-    grid-template-columns: 1fr 110px;
-  }
-  .pshape svg {
-    width: 104px;
-    height: 104px;
   }
   .pl-card__foot {
     flex-wrap: wrap;
@@ -3139,27 +2880,6 @@ h3 {
   box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.9);
 }
 
-/* skills */
-.trace,
-.stub path {
-  animation: none;
-  stroke-dashoffset: 0;
-}
-.trace--on {
-  filter: none;
-}
-.cnode.is-active {
-  box-shadow: 0 0 0 5px rgba(212, 175, 95, 0.14);
-}
-.skill-tab[aria-selected="true"] .swatch {
-  box-shadow: none;
-}
-.circuit-card {
-  background: var(--surface);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.9);
-}
 
 /* experience */
 .pl-card {
@@ -3173,6 +2893,28 @@ h3 {
 .pl-node.is-hot .pl-card {
   border-color: var(--teal);
   box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.9);
+}
+/* straight at rest; on hover the card tilts like a pinned note and lifts */
+.pl-card {
+  transition: transform 260ms var(--ease-out), box-shadow 260ms, border-color var(--dur);
+}
+.pl-node .pl-card:hover,
+.pl-node .pl-card:focus-within,
+.pl-node.is-hot .pl-card {
+  transform: rotate(-1.5deg) translateY(-4px);
+  box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.95);
+}
+.pl-node:nth-child(even) .pl-card:hover,
+.pl-node:nth-child(even) .pl-card:focus-within,
+.pl-node.is-hot:nth-child(even) .pl-card {
+  transform: rotate(1.5deg) translateY(-4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-node .pl-card:hover,
+  .pl-node .pl-card:focus-within,
+  .pl-node.is-hot .pl-card {
+    transform: none;
+  }
 }
 .pl-card__index {
   font-family: var(--font-display);
@@ -3570,11 +3312,8 @@ h3 {
 .wb__canvas {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 270px minmax(0, 1fr);
-  grid-template-areas:
-    "obs photo facts"
-    "tool photo human";
-  gap: 56px 96px;
+  grid-template-columns: minmax(0, 1fr) 320px minmax(0, 1fr);
+  gap: 56px 80px;
   align-items: center;
   padding: 44px 0 36px;
 }
@@ -3618,25 +3357,97 @@ h3 {
   transform: rotate(0deg) translateY(-4px);
   box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.95);
 }
+/* side columns of notes; one side holds two cards, the other three */
+.wb__col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  min-width: 0;
+}
+.wb__col--left {
+  grid-column: 1;
+  grid-row: 1;
+  align-items: flex-start;
+}
+.wb__col--right {
+  grid-column: 3;
+  grid-row: 1;
+  align-items: flex-end;
+}
 .wb-note--obsession {
-  grid-area: obs;
-  justify-self: start;
   transform: rotate(-2deg);
 }
 .wb-note--facts {
-  grid-area: facts;
-  justify-self: end;
   transform: rotate(1.5deg);
 }
 .wb-note--toolbox {
-  grid-area: tool;
-  justify-self: start;
   transform: rotate(1deg);
 }
+.wb-note--radar {
+  transform: rotate(-1deg);
+}
 .wb-note--human {
-  grid-area: human;
-  justify-self: end;
   transform: rotate(-1.5deg);
+}
+/* Curiosity Radar note */
+.wb-radar__tag {
+  padding: 2px 8px;
+  border: 1px solid rgba(212, 175, 95, 0.5);
+  border-radius: 6px;
+  background: rgba(212, 175, 95, 0.1);
+  font-family: var(--code);
+  font-size: 11px;
+  color: var(--teal);
+  white-space: nowrap;
+}
+.wb-radar__quote {
+  margin: 12px 0 0;
+  padding: 2px 0 2px 12px;
+  border-left: 3px solid var(--teal);
+  font-size: 21px;
+  line-height: 1.3;
+}
+.wb-radar__list-title {
+  margin-top: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.wb-radar__list-title span {
+  color: var(--teal);
+}
+.wb-radar__list {
+  display: grid;
+  gap: 6px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.wb-radar__list li {
+  position: relative;
+  padding-left: 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--offwhite);
+}
+.wb-radar__list li::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--teal);
+}
+.wb-radar__list strong {
+  font-weight: 600;
+  color: var(--emerald);
+}
+.wb-note--radar .wb-note__foot {
+  color: var(--emerald);
 }
 .wb-note__title {
   display: flex;
@@ -3810,7 +3621,8 @@ h3 {
 
 /* polaroid */
 .wb-polaroid {
-  grid-area: photo;
+  grid-column: 2;
+  grid-row: 1;
   position: relative;
   margin: 0;
   padding: 12px 12px 0;
@@ -3908,6 +3720,9 @@ h3 {
     gap: 48px;
     justify-items: center;
   }
+  .wb__col {
+    display: contents;
+  }
   .wb-polaroid,
   .wb-note {
     grid-area: auto;
@@ -3917,7 +3732,7 @@ h3 {
   }
   .wb-polaroid {
     order: 0;
-    width: min(78%, 300px);
+    width: min(86%, 340px);
   }
   .wb-note--obsession {
     order: 1;
@@ -3928,8 +3743,11 @@ h3 {
   .wb-note--toolbox {
     order: 3;
   }
-  .wb-note--human {
+  .wb-note--radar {
     order: 4;
+  }
+  .wb-note--human {
+    order: 5;
   }
   .wb-note::before {
     content: "";
@@ -4167,46 +3985,13 @@ body {
 
 /* ───────────── Projects: sticky title stacking deck ───────────── */
 .projects .section-head,
-.hackathons .section-head {
+.hackathons .section-head,
+.skills .section-head {
   margin-bottom: 40px;
-}
-.projects .section-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-}
-.deck-steps {
-  display: flex;
-  gap: 8px;
-}
-.deck-steps button {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-  transition: background var(--dur), color var(--dur), border-color var(--dur), opacity var(--dur);
-}
-.deck-steps button:hover:not(:disabled) {
-  border-color: var(--teal);
-  color: var(--teal);
-}
-.deck-steps button:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-.deck-steps svg {
-  width: 18px;
-  height: 18px;
 }
 .deck {
   --deck-base: 84px;
-  --deck-bar: 52px;
+  --deck-bar: 60px;
   --deck-foot: 84px;
   display: flex;
   flex-direction: column;
@@ -4264,7 +4049,7 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
-  font-size: 17px;
+  font-size: 21px;
   font-weight: 600;
   color: var(--text);
 }
@@ -4313,8 +4098,7 @@ body {
   border-color: var(--teal);
   color: var(--teal);
 }
-.deck-bar__expand:focus-visible,
-.deck-steps button:focus-visible {
+.deck-bar__expand:focus-visible {
   outline: 2px solid var(--teal);
   outline-offset: 2px;
 }
@@ -4457,7 +4241,7 @@ body {
 @media (max-width: 700px) {
   .deck {
     --deck-base: 76px;
-    --deck-bar: 44px;
+    --deck-bar: 50px;
     --deck-foot: 76px;
     gap: 32px;
   }
@@ -4469,7 +4253,7 @@ body {
     padding: 0 10px 0 12px;
   }
   .deck-bar__title {
-    font-size: 15px;
+    font-size: 17px;
   }
   .deck-bar__tag {
     display: none;
@@ -4627,5 +4411,402 @@ body {
   }
   .hack {
     padding: 20px;
+  }
+}
+
+/* ───────────── Skills: areas + tools grid ───────────── */
+.skills-panel {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  column-gap: 28px;
+  align-items: start;
+}
+/* the label sits above the list, so the tools box can centre on the buttons alone */
+.skills-areas {
+  display: contents;
+}
+.skills-areas__label {
+  grid-column: 1;
+  grid-row: 1;
+}
+.skills-areas [role="tablist"] {
+  grid-column: 1;
+  grid-row: 2;
+}
+.skills-tools {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+}
+.skills-areas__label {
+  margin: 0 0 14px 4px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.skills-areas [role="tablist"] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.skills-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px 0 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 15.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur), border-color var(--dur), color var(--dur);
+}
+.skills-area:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+.skills-area__icon {
+  flex: none;
+  width: 22px;
+  font-size: 17px;
+  line-height: 1;
+  text-align: center;
+}
+.skills-area__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.skills-area__count {
+  flex: none;
+  min-width: 28px;
+  padding: 2px 8px;
+  border-radius: 7px;
+  background: var(--surface-2);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: var(--text-muted);
+}
+.skills-area[aria-selected="true"] {
+  border-color: var(--teal);
+  background: var(--teal);
+  color: var(--on-primary);
+  font-weight: 600;
+}
+.skills-area[aria-selected="true"] .skills-area__count {
+  background: rgba(26, 20, 5, 0.16);
+  color: var(--on-primary);
+}
+.skills-tools {
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-2);
+}
+.skills-tools__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.skills-tools__head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.skills-tools__head h3 span {
+  margin-right: 6px;
+  letter-spacing: 0;
+}
+.skills-tools__count {
+  flex: none;
+  padding: 4px 12px;
+  border: 1px solid rgba(212, 175, 95, 0.45);
+  border-radius: 8px;
+  background: rgba(212, 175, 95, 0.1);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+}
+.skills-tools__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: skills-fade 0.3s var(--ease-out);
+}
+@keyframes skills-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.skill-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color var(--dur), background var(--dur);
+}
+.skill-chip__name {
+  min-width: 0;
+  padding: 8px 0;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.skill-chip:hover,
+.skill-chip:focus-visible {
+  border-color: rgba(212, 175, 95, 0.55);
+  background: var(--surface-2);
+}
+.skill-chip:focus-visible,
+.skills-area:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+/* where the skill was used, shown on hover / keyboard focus */
+.skill-chip__tip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  z-index: 5;
+  width: max(100%, 240px);
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--surface-2);
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.8);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity var(--dur), transform var(--dur), visibility var(--dur);
+  pointer-events: none;
+}
+.skill-chip:hover .skill-chip__tip,
+.skill-chip:focus-visible .skill-chip__tip {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.skills-tools__grid li:nth-child(3n) .skill-chip__tip {
+  left: auto;
+  right: 0;
+}
+@media (max-width: 1024px) {
+  .skills-panel {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+  .skills-tools {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 28px;
+  }
+}
+@media (max-width: 640px) {
+  .skills-tools {
+    padding: 18px;
+  }
+  .skills-tools__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .skill-chip {
+    padding: 0 12px;
+    font-size: 14px;
+  }
+  .skills-tools__grid li:nth-child(3n) .skill-chip__tip {
+    left: 0;
+    right: auto;
+  }
+  .skills-tools__grid li:nth-child(2n) .skill-chip__tip {
+    left: auto;
+    right: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skills-tools__grid {
+    animation: none;
+  }
+}
+
+/* Section and card titles use Space Grotesk; everything else stays Inter */
+.section-head h2,
+.contact__title,
+.pl-card__role,
+.deck-bar__title,
+.deck-card__headline,
+.hack__title,
+.skills-tools__head h3,
+.degree__title,
+.honor__text strong,
+.contact__label {
+  font-family: var(--font-heading), var(--font-body), sans-serif;
+}
+
+/* Small project metadata (numbers, dates, stack labels) reads as mono annotations */
+.deck-bar__num,
+.deck-bar__tag,
+.deck-card__chips span,
+.deck-card__kicker,
+.hack__event span,
+.hack .chips li {
+  font-family: var(--font-code), ui-monospace, monospace;
+  letter-spacing: 0;
+}
+.deck-card__chips span,
+.hack__event span,
+.hack .chips li {
+  font-size: 12px;
+}
+/* category · year sits beside the project name at the same size */
+.deck-bar__tag {
+  font-size: 19px;
+  color: var(--text-muted);
+}
+.deck-card__kicker {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+}
+
+/* ───────────── Experience: left year rail ───────────── */
+.pl-track {
+  padding-left: 180px;
+}
+.pl-years {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 116px;
+  --x: 104px; /* where the line runs */
+}
+.pl-years__line,
+.pl-years__fill {
+  position: absolute;
+  top: 0;
+  left: calc(var(--x) - 1px);
+  width: 2px;
+  border-radius: 2px;
+}
+.pl-years__line {
+  bottom: 0;
+  background: var(--border);
+}
+.pl-years__fill {
+  background: linear-gradient(to bottom, rgba(212, 175, 95, 0.2), var(--teal));
+  box-shadow: 0 0 10px rgba(212, 175, 95, 0.45);
+  transition: height 0.15s linear;
+}
+.pl-years ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pl-years li {
+  position: absolute;
+  left: 0;
+  width: calc(var(--x) + 9px);
+  transform: translateY(-50%);
+}
+.pl-years__dot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  cursor: pointer;
+}
+.pl-years__label {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: color var(--dur);
+}
+.pl-years__node {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 2px;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  transition: border-color var(--dur), background var(--dur), box-shadow var(--dur), transform var(--dur);
+}
+.pl-years__dot.is-past .pl-years__node {
+  border-color: var(--teal);
+  background: var(--teal);
+}
+.pl-years__dot.is-active .pl-years__node {
+  border-color: var(--teal);
+  background: var(--bg);
+  box-shadow: 0 0 0 5px rgba(212, 175, 95, 0.18);
+  transform: scale(1.2);
+}
+.pl-years__dot.is-active .pl-years__label,
+.pl-years__dot:hover .pl-years__label {
+  color: var(--teal);
+}
+.pl-years__dot:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+@media (max-width: 640px) {
+  .pl-track {
+    padding-left: 30px;
+  }
+  .pl-years {
+    width: 22px;
+    --x: 10px;
+  }
+  .pl-years li {
+    width: 22px;
+  }
+  .pl-years__dot {
+    justify-content: center;
+  }
+  .pl-years__label {
+    display: none;
+  }
+  .pl-years__node {
+    margin: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pl-years__fill {
+    transition: none;
   }
 }

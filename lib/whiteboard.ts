@@ -28,7 +28,7 @@ export const whiteboard = {
 
   toolbox: {
     title: "Toolbox",
-    stack: ["PyTorch", "Neo4j", "LLMs & RAG", "Kafka", "KG"],
+    stack: ["PyTorch", "LLMs & RAG", "Kafka", "KG"],
     caption: "doodle: L → 0",
     // illustrative training curve points (epoch, loss)
     curve: [
@@ -41,9 +41,23 @@ export const whiteboard = {
     ] as [number, number][],
   },
 
+  radar: {
+    title: "Curiosity Radar",
+    tag: "curated signature",
+    quote: "Fascinated by the intersection of structured logic and generative unpredictability.",
+    listTitle: "What keeps me up at night:",
+    // [before, highlighted, after]
+    items: [
+      ["Grounding generative agents in ", "deterministic truth", "."],
+      ["Turning massive, messy enterprise streams into ", "structured insights", "."],
+      ["Scalable ML architecture that survives the ", "messy real world", "."],
+    ] as [string, string, string][],
+    status: "status: permanently tuned to breakthrough papers 📄✨",
+  },
+
   human: {
     title: "Off the clock",
-    lines: ["Speaks English, Hindi and Telugu.", "Currently learning German (A2)."],
+    lines: ["Speaks English, Hindi and Telugu.", "Currently learning German (B1)."],
     footer: "Based in Hamburg",
     tag: "#AlwaysLearning",
   },

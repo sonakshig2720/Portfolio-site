@@ -22,6 +22,8 @@ export interface ExperienceNode {
     architecture: string;
     solution: string;
     metrics: string[];
+    // optional headings for the details popup (defaults: Problem, Architecture, Solution, Metrics, Stack)
+    labels?: { problem?: string; architecture?: string; solution?: string; metrics?: string; stack?: string };
     recommendation?: {
       quote: string;
       author: string;
@@ -36,20 +38,20 @@ export const experienceNodes: ExperienceNode[] = [
     index: "01",
     stageName: "Grounding",
     role: "Master’s Thesis Research",
-    company: "German Aerospace Center (DLR)",
+    company: "Deutsches Zentrum für Luft- und Raumfahrt (DLR)",
     period: "Apr 2026 — Present",
     location: "Hamburg, Germany",
     verbs: ["Extract", "Structure", "Ground"],
     abstractShape: "icosahedron",
     sideTagLeft: "A320 maintenance docs\ntables · equations · flowcharts",
-    sideTagRight: "KG-grounded retrieval\nNeo4j · RDF/OWL",
-    techStack: ["Knowledge Graphs", "Neo4j", "RDF / OWL", "KG-RAG", "LLMs"],
+    sideTagRight: "KG-grounded retrieval\nOntologies · RDF/OWL",
+    techStack: ["Knowledge Graphs", "RDF / OWL", "KG-RAG", "LLMs"],
     impactMetric: "Ongoing thesis",
     caseStudy: {
       problem:
         "Aircraft maintenance knowledge is scattered across text, tables, equations, flowcharts and technical diagrams — hard to search, and in a safety-critical domain, answers must be grounded in the source documentation.",
       architecture:
-        "A multimodal knowledge-extraction pipeline over Airbus A320 maintenance documentation (SGML) that maps components, procedures and relationships onto an ontology and a Neo4j knowledge graph, with a KG-grounded retrieval layer on top.",
+        "An ontology-guided pipeline that extracts knowledge from Airbus A320 maintenance manuals—including text, tables, equations and flowcharts—and organizes components, procedures and their relationships in a knowledge graph for grounded retrieval.",
       solution:
         "Developing the extraction pipeline and ontology, building knowledge-grounded retrieval and reasoning for accurate access to components, procedures and maintenance relationships, and investigating scalable storage and retrieval architectures.",
       metrics: ["Formal evaluation in progress — results will be added as the research matures"],
@@ -118,7 +120,7 @@ export const experienceNodes: ExperienceNode[] = [
     company: "Fraunhofer Institute for Mechatronic Systems Design (IEM)",
     period: "Jan — Aug 2025",
     location: "Paderborn, Germany",
-    verbs: ["Compare", "Generate", "Validate"],
+    verbs: ["Generate", "Compare", "Validate"],
     abstractShape: "vortex",
     sideTagLeft: "Synthetic tabular data\n15,000+ records",
     sideTagRight: "Automated validation\n98% pass rate",
@@ -158,12 +160,19 @@ export const experienceNodes: ExperienceNode[] = [
       architecture:
         "ETL workflows in Informatica Intelligent Cloud Services (IICS), moving and transforming data through a range of enterprise database connectors.",
       solution:
-        "Started as an intern (Aug 2021 – Jun 2022) working with senior engineers to prioritise and resolve customer issues, then as Associate Software Engineer (Jul 2022 – Sep 2023) resolved integration and connector cases, optimised ETL workflows for efficiency and reliability, and wrote reusable knowledge articles so recurring cases didn't need fresh investigation.",
+        "Started as an intern (Aug 2021 – Jun 2022), working with senior engineers to prioritise and resolve customer issues, then as Associate Software Engineer (Jul 2022 – Sep 2023) resolved integration and connector cases, optimised ETL workflows for efficiency and reliability, and wrote reusable knowledge articles so recurring cases didn't need fresh investigation.",
       metrics: [
         "95% customer satisfaction rate",
         "Technical workarounds for ~90% of assigned support cases",
         "Issue response times improved by 20% as an intern",
       ],
+      labels: {
+        problem: "Customer Challenge",
+        architecture: "Technical Scope",
+        solution: "Role & Contributions",
+        metrics: "Impact",
+        stack: "Technology Stack",
+      },
     },
   },
 ];

@@ -25,13 +25,9 @@ export type DeckItem = {
 export default function StackDeck<T extends DeckItem>({
   items,
   onProjectSelect,
-  onActiveChange,
-  navRef,
 }: {
   items: T[];
   onProjectSelect?: (item: T) => void; // CTA, shown only when ctaLabel is set
-  onActiveChange?: (index: number) => void;
-  navRef?: React.MutableRefObject<((index: number) => void) | null>;
 }) {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
   const cardRefs = useRef<(HTMLLIElement | null)[]>([]);
@@ -62,10 +58,6 @@ export default function StackDeck<T extends DeckItem>({
     };
   }, [items.length]);
 
-  useEffect(() => {
-    onActiveChange?.(activeProjectIndex);
-  }, [activeProjectIndex, onActiveChange]);
-
   // Scroll so card `index` sits exactly at its sticky threshold. Sticky boxes
   // report their pinned position, so rebuild the natural one from the list top.
   const scrollToProject = useCallback((index: number) => {
@@ -80,10 +72,6 @@ export default function StackDeck<T extends DeckItem>({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: natural - stickTop + 1, behavior: reduce ? "auto" : "smooth" });
   }, []);
-
-  useEffect(() => {
-    if (navRef) navRef.current = scrollToProject;
-  }, [navRef, scrollToProject]);
 
   return (
     <ol className="deck">

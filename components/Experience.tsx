@@ -2,7 +2,6 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { experienceNodes, type ExperienceNode } from "@/lib/experiencePipeline";
-import PipelineShape from "./PipelineShapes";
 
 // Zig-zag placement of the nodes down the pipeline.
 const ALIGN = ["right", "center", "left", "right", "shift-left"] as const;
@@ -22,6 +21,13 @@ function SideTag({ text, side }: { text: string; side: "left" | "right" }) {
   );
 }
 
+// "Apr 2026 — Present" → "Apr 2026"; "Feb — Jul 2025" → "Feb 2025"
+function startOf(period: string) {
+  const [start] = period.split("—").map((p) => p.trim());
+  const year = period.match(/\d{4}/)?.[0] ?? "";
+  return /\d{4}/.test(start) ? start : `${start} ${year}`;
+}
+
 export default function Experience() {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
@@ -29,6 +35,8 @@ export default function Experience() {
   const [bus, setBus] = useState<{ w: number; h: number; segs: Segment[] }>({ w: 0, h: 0, segs: [] });
   const [hot, setHot] = useState<number | null>(null);
   const [open, setOpen] = useState<ExperienceNode | null>(null);
+  // left-hand year rail: dot positions, how far the gold fill has run, current role
+  const [rail, setRail] = useState<{ dots: number[]; fill: number; active: number }>({ dots: [], fill: 0, active: 0 });
 
   // Route an orthogonal busway between consecutive cards only (no lead-in or tail),
   // re-measured on resize.
@@ -49,12 +57,49 @@ export default function Experience() {
         segs.push({ d: `M${a.cx} ${a.bottom} V${mid} H${b.cx} V${b.top}`, from: i });
       }
       setBus({ w: base.width, h: base.height, segs });
+      updateRail();
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(track);
     return () => ro.disconnect();
   }, []);
+
+  // Year rail: the fill follows the middle of the screen through the track.
+  const updateRail = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const base = track.getBoundingClientRect();
+    const dots = cardRefs.current.map((el) => (el ? Math.round(el.getBoundingClientRect().top - base.top + 34) : 0));
+    const mid = window.innerHeight / 2 - base.top;
+    const fill = Math.max(0, Math.min(base.height, mid));
+    let active = 0;
+    dots.forEach((y, i) => {
+      if (y <= mid) active = i;
+    });
+    setRail({ dots, fill: Math.round(fill), active });
+  };
+
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => {
+      if (!frame)
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          updateRail();
+        });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  const jumpTo = (i: number) => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    cardRefs.current[i]?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  };
 
   useEffect(() => {
     const dlg = dialogRef.current;
@@ -74,6 +119,28 @@ export default function Experience() {
 
         {/* ── Pipeline ── */}
         <div className="pl-track" ref={trackRef}>
+          <nav className="pl-years" aria-label="Experience timeline">
+            <span className="pl-years__line" aria-hidden="true" />
+            <span className="pl-years__fill" style={{ height: rail.fill }} aria-hidden="true" />
+            {rail.dots.length > 0 && (
+              <ol>
+                {experienceNodes.map((n, i) => (
+                  <li key={n.id} style={{ top: rail.dots[i] }}>
+                    <button
+                      type="button"
+                      className={`pl-years__dot ${i === rail.active ? "is-active" : ""} ${i < rail.active ? "is-past" : ""}`}
+                      onClick={() => jumpTo(i)}
+                      aria-label={`${startOf(n.period)}: ${n.role} at ${n.company}`}
+                      aria-current={i === rail.active ? "step" : undefined}
+                    >
+                      <span className="pl-years__label">{startOf(n.period)}</span>
+                      <span className="pl-years__node" aria-hidden="true" />
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </nav>
           <svg className="pl-bus" width={bus.w} height={bus.h} aria-hidden="true">
             {bus.segs.map((s, i) => {
               const lit = hot !== null && (s.from === hot || s.from === hot - 1);
@@ -131,7 +198,6 @@ export default function Experience() {
                           </li>
                         ))}
                       </ul>
-                      <PipelineShape shape={n.abstractShape} />
                     </div>
 
                     <footer className="pl-card__foot">
@@ -179,19 +245,19 @@ export default function Experience() {
 
             <div className="pl-dialog__grid">
               <section>
-                <p className="pl-dialog__label">Problem</p>
+                <p className="pl-dialog__label">{open.caseStudy.labels?.problem ?? "Problem"}</p>
                 <p>{open.caseStudy.problem}</p>
               </section>
               <section>
-                <p className="pl-dialog__label">Architecture</p>
+                <p className="pl-dialog__label">{open.caseStudy.labels?.architecture ?? "Architecture"}</p>
                 <p>{open.caseStudy.architecture}</p>
               </section>
               <section>
-                <p className="pl-dialog__label">Solution</p>
+                <p className="pl-dialog__label">{open.caseStudy.labels?.solution ?? "Solution"}</p>
                 <p>{open.caseStudy.solution}</p>
               </section>
               <section>
-                <p className="pl-dialog__label">Metrics</p>
+                <p className="pl-dialog__label">{open.caseStudy.labels?.metrics ?? "Metrics"}</p>
                 <ul className="pl-dialog__metrics">
                   {open.caseStudy.metrics.map((m) => (
                     <li key={m}>{m}</li>
@@ -209,7 +275,7 @@ export default function Experience() {
               </blockquote>
             )}
 
-            <p className="pl-dialog__label">Stack</p>
+            <p className="pl-dialog__label">{open.caseStudy.labels?.stack ?? "Stack"}</p>
             <ul className="chips chips--sm">
               {open.techStack.map((t) => (
                 <li key={t}>{t}</li>

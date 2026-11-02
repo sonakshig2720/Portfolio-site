@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Caveat, JetBrains_Mono } from "next/font/google";
+import { Inter, Caveat, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+// Section and card titles.
+const heading = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading", display: "swap" });
 // Handwritten + code fonts are used only on the hero whiteboard.
 const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", display: "swap" });
 const code = JetBrains_Mono({ subsets: ["latin"], variable: "--font-code", display: "swap" });
@@ -30,7 +32,7 @@ top();window.addEventListener("load",top);
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${hand.variable} ${code.variable}`}>
+    <html lang="en" className={`${inter.variable} ${heading.variable} ${hand.variable} ${code.variable}`}>
       <body>
         <script dangerouslySetInnerHTML={{ __html: resetOnReload }} />
         {children}

@@ -26,18 +26,18 @@ export type ProjectDetail = {
 export const projectDetails: Record<string, ProjectDetail> = {
   "aircraft-kg": {
     subtitle: "Multimodal Knowledge Graph + RAG for Aircraft Maintenance",
-    tech: ["Knowledge Graphs", "Ontologies", "RDF / OWL", "Neo4j", "RAG / KG-RAG", "LLMs", "Information Extraction", "SGML"],
+    tech: ["Knowledge Graphs", "Ontologies", "RDF / OWL", "RAG / KG-RAG", "LLMs", "Information Extraction", "SGML"],
     overview:
       "Aircraft maintenance manuals distribute knowledge across text, tables, equations, flowcharts, diagrams and structured technical documentation. This project investigates how that information can be transformed into a machine-readable knowledge graph and used to support grounded retrieval and question answering for maintenance tasks — working from Airbus A320 maintenance documentation in SGML format.",
     problem:
       "Maintenance knowledge is scattered across heterogeneous document formats — text, tables, equations, flowcharts and technical diagrams — making it hard to search and harder to trust. In a safety-critical domain, retrieval needs to be grounded in the source documentation rather than relying on a language model's unverified recall.",
     approach:
-      "The project builds an ontology-grounded information extraction pipeline that structures aircraft components, procedures and relationships from SGML source documents. Extracted entities and relations are mapped onto a purpose-built ontology and constructed into a knowledge graph in Neo4j. A Knowledge Graph-grounded Retrieval-Augmented Generation (KG-RAG) layer then uses this graph to answer technician-facing maintenance queries with retrieval grounded in the underlying documentation, integrating text, tables, equations, flowcharts and diagrams from the source material.",
+      "The project builds an ontology-grounded information extraction pipeline that structures aircraft components, procedures and relationships from SGML source documents. Extracted entities and relations are mapped onto a purpose-built ontology and constructed into a knowledge graph. A Knowledge Graph-grounded Retrieval-Augmented Generation (KG-RAG) layer then uses this graph to answer technician-facing maintenance queries with retrieval grounded in the underlying documentation, integrating text, tables, equations, flowcharts and diagrams from the source material.",
     architecture: [
       { title: "SGML / Documents", desc: "Airbus A320 maintenance documentation" },
       { title: "Information Extraction", desc: "Text, tables, equations, flowcharts" },
       { title: "Ontology Mapping", desc: "Components, procedures, relationships" },
-      { title: "Knowledge Graph", desc: "Neo4j" },
+      { title: "Knowledge Graph", desc: "Components, procedures, relationships" },
       { title: "KG-RAG", desc: "Grounded retrieval + generation" },
       { title: "Maintenance Query", desc: "Technician-facing answers" },
     ],

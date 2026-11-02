@@ -13,8 +13,8 @@ export const radialProjects: ProjectItem[] = [
     image: "/projects/aircraft-kg.jpg",
     imageFit: "cover",
     description:
-      "Transforming Airbus A320 maintenance documentation into a machine-readable knowledge graph, grounded in tables, equations and flowcharts, with a KG-RAG layer that answers technician-facing maintenance queries from the source documentation. Master's thesis research at the German Aerospace Center (DLR).",
-    techStack: ["Neo4j", "KG-RAG", "RDF / OWL", "Ontologies", "LLMs"],
+      "Transforming Airbus A320 maintenance documentation into a machine-readable knowledge graph, grounded in tables, equations and flowcharts, with a KG-RAG layer that answers technician-facing maintenance queries from the source documentation. Master's thesis research at the Deutsches Zentrum für Luft- und Raumfahrt (DLR).",
+    techStack: ["Knowledge Graphs", "KG-RAG", "RDF / OWL", "Ontologies", "LLMs"],
     metrics: [
       { label: "Status", value: "Ongoing" },
       { label: "Corpus", value: "Airbus A320 SGML" },

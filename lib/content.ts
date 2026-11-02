@@ -18,7 +18,7 @@ export const profile = {
 
 export const about = [
   "I am interested in building intelligent systems that can understand complex information, learn meaningful representations, and solve real-world problems. My work spans artificial intelligence, machine learning, knowledge graphs, multimodal learning, natural language processing and streaming applications.",
-  "I am particularly drawn to problems involving complex and heterogeneous data — from text, images, tables and diagrams to sensor and domain-specific information — and exploring how AI can connect and reason across these different sources. Most recently, I have been working on intelligent systems for aircraft maintenance documentation at the German Aerospace Center (DLR).",
+  "I am particularly drawn to problems involving complex and heterogeneous data — from text, images, tables and diagrams to sensor and domain-specific information — and exploring how AI can connect and reason across these different sources. Most recently, I have been working on intelligent systems for aircraft maintenance documentation at the Deutsches Zentrum für Luft- und Raumfahrt (DLR).",
   "My background combines applied research with hands-on engineering, and I enjoy taking ideas from experimentation to working systems. I am especially interested in developing AI that is reliable, interpretable, and useful in real-world applications.",
 ];
 
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       "Transforming Airbus A320 maintenance documentation into a machine-readable knowledge graph, grounded in tables, equations and flowcharts. Uses KG-RAG to answer technician-facing maintenance queries.",
     contribution:
       "Designing the ontology and building the KG-RAG pipeline end-to-end, from extraction to grounded retrieval for multimodal information.",
-    tags: ["Knowledge Graphs", "Ontologies · RDF/OWL", "Neo4j", "RAG / KG-RAG", "LLMs"],
+    tags: ["Knowledge Graphs", "Ontologies · RDF/OWL", "RAG / KG-RAG", "LLMs"],
     links: [
     ],
     art: "graph",
@@ -146,7 +146,7 @@ export const projects: Project[] = [
 export const experience = [
   {
     role: "Master's Thesis Research",
-    org: "German Aerospace Center (DLR)",
+    org: "Deutsches Zentrum für Luft- und Raumfahrt (DLR)",
     dates: "Apr 2026 – Present",
     current: true,
     text: "Research on multimodal knowledge extraction, ontology-based knowledge representation and KG-grounded retrieval for aircraft maintenance documentation.",
@@ -205,7 +205,7 @@ export const education: Degree[] = [
     location: "Hamburg, Germany",
     grade: "Current grade 1.9 (German scale, 1.0 = highest)",
     thesisTitle: "Knowledge Graph-RAG for aircraft maintenance",
-    partner: "German Aerospace Center (DLR)",
+    partner: "Deutsches Zentrum für Luft- und Raumfahrt (DLR)",
     techStack: [],
   },
   {
