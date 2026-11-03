@@ -3,6 +3,7 @@ import { Inter, Caveat, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import CursorTrail from "@/components/CursorTrail";
 import ChatBot from "@/components/ChatBot";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 // Section and card titles.
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <CursorTrail />
         <ChatBot />
+        <Analytics />
       </body>
     </html>
   );
